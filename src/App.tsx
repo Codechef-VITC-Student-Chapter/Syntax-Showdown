@@ -1,3 +1,4 @@
+import Box from './graph/Box';
 import clubLogo from '/Club Logo.png';
 import swords from '/Swords.png';
 
@@ -12,6 +13,13 @@ function App() {
           </h1>
           <img src={swords} className="h-18"></img>
         </div>
+        <Box
+          player1="adi"
+          player2="aneesh"
+          color1="#d73546"
+          color2="#376189"
+          color3="#ffffff"
+        />
       </div>
     </>
   );
