@@ -98,7 +98,7 @@ const TournamentBracket: React.FC = () => {
               .map((match) => (
                 <Box
                   key={match.id}
-                  id={match.id} // 🔥 FIXED: Ensures the div has an ID so lines work
+                  id={match.id}
                   player1={match.player1}
                   player2={match.player2}
                   color1={i === 0 ? "#3498db" : "#2ecc71"}
