@@ -1,180 +1,126 @@
 import Box from './graph/Box';
 import clubLogo from '/Club Logo.png';
 import swords from '/Swords.png';
-import { SteppedLineTo } from 'react-lineto';
 
 function App() {
   return (
     <>
       <div className="w-screen min-h-screen backdrop-blur-[1px]">
-        <div className="flex justify-center items-center m-5 p -5">
-          <img src={clubLogo} className="h-20"></img>
+        {/* Header */}
+        <div className="flex justify-center items-center m-5 p-5">
+          <img src={clubLogo} className="h-20" alt="Club Logo" />
           <h1 className="text-white text-4xl font-extrabold m-5 p-3">
             Syntax Showdown
           </h1>
-          <img src={swords} className="h-18"></img>
+          <img src={swords} className="h-18" alt="Swords" />
         </div>
 
-        <div className='flex'>
-          
-          <div>
-
-            <div className='m-10 A'>
+        {/* Horizontal Bracket */}
+        <div className="flex justify-center items-center space-x-8 p-10">
+          {/* Round of 16 */}
+          <div className="flex flex-col justify-center space-y-4">
+            {[...Array(8)].map((_, i) => (
               <Box
-                player1="adi"
-                player2="aneesh"
+                key={`round16-${i}`}
+                player1={`Player ${i * 2 + 1}`}
+                player2={`Player ${i * 2 + 2}`}
                 color1="#d73546"
                 color2="#376189"
                 color3="#ffffff"
               />
-            </div>
+            ))}
+          </div>
 
-            <div className='m-10 B'>
+          {/* Connectors for Round of 16 to Round of 8 */}
+          <div className="flex flex-col justify-center h-full">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={`connector16-8-${i}`}
+                className="w-8 h-0.5 bg-white mx-2 my-4"
+              ></div>
+            ))}
+          </div>
+
+          {/* Round of 8 */}
+          <div className="flex flex-col justify-center space-y-16">
+            {[...Array(4)].map((_, i) => (
               <Box
-                player1="adi"
-                player2="aneesh"
+                key={`round8-${i}`}
+                player1={`Winner ${i * 2 + 1}`}
+                player2={`Winner ${i * 2 + 2}`}
                 color1="#d73546"
                 color2="#376189"
                 color3="#ffffff"
               />
-            </div>
-
+            ))}
           </div>
 
-            <div className='m-30 A'>
-                <Box
-                    player1="adi"
-                    player2="aneesh"
-                    color1="#d73546"
-                    color2="#376189"
-                    color3="#ffffff"
-                  />
-            </div>
-          <SteppedLineTo from='m-10 A' zIndex={0} borderColor='white' to='m-30 A' orientation='h' borderWidth={10} />
-          <SteppedLineTo from='m-10 B' borderColor='white' zIndex={0} to='m-30 A' orientation='h' borderWidth={10} />
-        </div>
-
-        <div>
-          <div className='flex'>
-            
-            <div>
-
-              <div className='m-10 C'>
-                <Box
-                  player1="adi"
-                  player2="aneesh"
-                  color1="#d73546"
-                  color2="#376189"
-                  color3="#ffffff"
-                />
-              </div>
-
-              <div className='m-10 D'>
-                <Box
-                  player1="adi"
-                  player2="aneesh"
-                  color1="#d73546"
-                  color2="#376189"
-                  color3="#ffffff"
-                />
-              </div>
-
-            </div>
-
-              <div className='m-30 B'>
-                  <Box
-                      player1="adi"
-                      player2="aneesh"
-                      color1="#d73546"
-                      color2="#376189"
-                      color3="#ffffff"
-                    />
-              </div>
-            <SteppedLineTo from='m-10 C' zIndex={0} borderColor='white' to='m-30 B' orientation='h' borderWidth={10} />
-            <SteppedLineTo from='m-10 D' borderColor='white' zIndex={0} to='m-30 B' orientation='h' borderWidth={10} />
+          {/* Connectors for Round of 8 to Round of 4 */}
+          <div className="flex flex-col justify-center h-full">
+            {[...Array(4)].map((_, i) => (
+              <div
+                key={`connector8-4-${i}`}
+                className="w-8 h-0.5 bg-white mx-2 my-8"
+              ></div>
+            ))}
           </div>
 
-          <div>
-            <div className='flex'>
-              <div>
-
-                <div className='m-10 E'>
-                  <Box
-                    player1="adi"
-                    player2="aneesh"
-                    color1="#d73546"
-                    color2="#376189"
-                    color3="#ffffff"
-                  />
-                </div>
-
-                <div className='m-10 F'>
-                  <Box
-                    player1="adi"
-                    player2="aneesh"
-                    color1="#d73546"
-                    color2="#376189"
-                    color3="#ffffff"
-                  />
-                </div>
-
-              </div>
-
-                <div className='m-30 C'>
-                    <Box
-                        player1="adi"
-                        player2="aneesh"
-                        color1="#d73546"
-                        color2="#376189"
-                        color3="#ffffff"
-                      />
-                </div>
-              <SteppedLineTo from='m-10 E' zIndex={0} borderColor='white' to='m-30 C' orientation='h' borderWidth={10} />
-              <SteppedLineTo from='m-10 F' borderColor='white' zIndex={0} to='m-30 C' orientation='h' borderWidth={10} />
-            </div>
+          {/* Round of 4 */}
+          <div className="flex flex-col justify-center space-y-32">
+            {[...Array(2)].map((_, i) => (
+              <Box
+                key={`round4-${i}`}
+                player1={`Winner ${i * 2 + 1}`}
+                player2={`Winner ${i * 2 + 2}`}
+                color1="#d73546"
+                color2="#376189"
+                color3="#ffffff"
+              />
+            ))}
           </div>
 
-          <div>
-          <div className='flex'>
-              <div>
+          {/* Connectors for Round of 4 to Round of 2 */}
+          <div className="flex flex-col justify-center h-full">
+            {[...Array(2)].map((_, i) => (
+              <div
+                key={`connector4-2-${i}`}
+                className="w-8 h-0.5 bg-white mx-2 my-16"
+              ></div>
+            ))}
+          </div>
 
-                <div className='m-10 G'>
-                  <Box
-                    player1="adi"
-                    player2="aneesh"
-                    color1="#d73546"
-                    color2="#376189"
-                    color3="#ffffff"
-                  />
-                </div>
+          {/* Round of 2 */}
+          <div className="flex flex-col justify-center space-y-64">
+            <Box
+              key="round2"
+              player1="Winner 1"
+              player2="Winner 2"
+              color1="#d73546"
+              color2="#376189"
+              color3="#ffffff"
+            />
+          </div>
 
-                <div className='m-10 H'>
-                  <Box
-                    player1="adi"
-                    player2="aneesh"
-                    color1="#d73546"
-                    color2="#376189"
-                    color3="#ffffff"
-                  />
-                </div>
+          {/* Connector for Round of 2 to Final */}
+          <div className="flex flex-col justify-center h-full">
+            <div
+              key="connector2-1"
+              className="w-8 h-0.5 bg-white mx-2 my-32"
+            ></div>
+          </div>
 
-              </div>
-
-                <div className='m-30 D'>
-                    <Box
-                        player1="adi"
-                        player2="aneesh"
-                        color1="#d73546"
-                        color2="#376189"
-                        color3="#ffffff"
-                      />
-                </div>
-              <SteppedLineTo from='m-10 G' zIndex={0} borderColor='white' to='m-30 D' orientation='h' borderWidth={10} />
-              <SteppedLineTo from='m-10 H' borderColor='white' zIndex={0} to='m-30 D' orientation='h' borderWidth={10} />
-            </div>
+          {/* Round of 1 (Final) */}
+          <div className="flex flex-col justify-center">
+            <Box
+              key="round1"
+              player1="Finalist 1"
+              player2="Finalist 2"
+              color1="#d73546"
+              color2="#376189"
+              color3="#ffffff"
+            />
           </div>
         </div>
-
       </div>
     </>
   );
