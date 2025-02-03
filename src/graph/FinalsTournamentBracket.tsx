@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Box from './Box';
 
 interface Match {
@@ -9,14 +9,12 @@ interface Match {
 }
 
 interface Props {
-  color1: string;
   color2: string;
   matches: Match[];
   prefix?: string;
 }
 
 const FinalsTournamentBracket: React.FC<Props> = ({
-  color1,
   color2,
   matches,
   prefix = '',

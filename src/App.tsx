@@ -342,7 +342,6 @@ function App() {
         </div>
         <div className="m-2">
           <FinalsTournamentBracket
-            color1="red"
             color2="white"
             matches={matchesf}
             prefix="f"
