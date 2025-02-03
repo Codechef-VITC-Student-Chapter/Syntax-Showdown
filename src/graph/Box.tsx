@@ -1,4 +1,5 @@
-interface props {
+interface Props {
+  id: string; // 🔥 Added id so `document.getElementById(id)` works
   player1: string;
   player2: string;
   color1: string;
@@ -6,24 +7,26 @@ interface props {
   color3: string;
 }
 
-function Box({ player1, player2, color1, color2, color3 }: props) {
+function Box({ id, player1, player2, color1, color2, color3 }: Props) {
   return (
-    <div
-      className="w-48 h-21 border-2 overflow-hidden text-center flex flex-col"
-      style={{ borderColor: color3, color: color3 }}
-    >
+    <div id={id} className="py-2">
       <div
-        className="w-48 grow flex flex-col justify-center"
-        style={{ backgroundColor: color1 }}
+        className="w-48 h-20 border-2 overflow-hidden text-center flex flex-col rounded-md shadow-md"
+        style={{ borderColor: color3, color: color3 }}
       >
-        {player1}
-      </div>
-      <hr className="border-1 border-white" />
-      <div
-        className="w-48 grow flex flex-col justify-center"
-        style={{ backgroundColor: color2 }}
-      >
-        {player2}
+        <div
+          className="w-48 flex-grow flex flex-col justify-center text-white font-semibold"
+          style={{ backgroundColor: color1 }}
+        >
+          {player1}
+        </div>
+        <hr className="border-1 border-white" />
+        <div
+          className="w-48 flex-grow flex flex-col justify-center text-white font-semibold"
+          style={{ backgroundColor: color2 }}
+        >
+          {player2}
+        </div>
       </div>
     </div>
   );

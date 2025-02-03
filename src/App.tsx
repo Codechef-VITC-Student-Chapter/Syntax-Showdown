@@ -1,6 +1,6 @@
-import Box from './graph/Box';
-import clubLogo from '/Club Logo.png';
-import swords from '/Swords.png';
+import Box from "./graph/Box";
+import clubLogo from "/Club Logo.png";
+import swords from "/Swords.png";
 
 function App() {
   return (
