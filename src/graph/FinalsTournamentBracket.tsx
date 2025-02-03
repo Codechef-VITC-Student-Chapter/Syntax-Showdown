@@ -15,7 +15,7 @@ interface Props {
   prefix?: string;
 }
 
-const TournamentBracket: React.FC<Props> = ({
+const FinalsTournamentBracket: React.FC<Props> = ({
   color1,
   color2,
   matches,
@@ -64,8 +64,13 @@ const TournamentBracket: React.FC<Props> = ({
       svgRef.current.innerHTML = '';
 
       matches.forEach((match) => {
-        if (match.nextId && !match.nextId.startsWith('fq')) {
-          const fromElement = document.getElementById(match.id);
+        if (match.nextId) {
+          var fromElement;
+          if (match.id.endsWith('f1') && match.id != 'f1') {
+            fromElement = document.getElementById(match.id + 'f');
+          } else {
+            fromElement = document.getElementById(match.id);
+          }
           const toElement = document.getElementById(match.nextId);
           if (fromElement && toElement) {
             drawSteppedLine(fromElement, toElement);
@@ -80,32 +85,56 @@ const TournamentBracket: React.FC<Props> = ({
     return () => window.removeEventListener('resize', updateLines);
   }, [matches]);
 
+  const colourMatch: { [key: string]: string } = {
+    rf1: '#D73646',
+    bf1: '#376189',
+    gf1: '#2E987A',
+    yf1: '#F4B331',
+    fq1: '',
+  };
   return (
-    <div className="overflow-x-auto">
-      <div className="relative flex justify-center items-center p-10 rounded-lg min-w-[640px] ">
-        <div className="relative w-[1000px] flex justify-between items-stretch">
-          {[prefix + 'm', prefix + 'q', prefix + 's', prefix + 'f'].map(
-            (round, i) => (
-              <div
-                key={i}
-                className={`flex flex-col items-center w-24 md:w-32 lg:w-48 justify-evenly`}
-              >
-                {matches
-                  .filter((m) => m.id.startsWith(round))
-                  .map((match) => (
-                    <Box
-                      key={match.id}
-                      id={match.id}
-                      player1={match.player1}
-                      player2={match.player2}
-                      color1={color1}
-                      color2={color1}
-                      color3={color2}
-                    />
-                  ))}
-              </div>
-            )
-          )}
+    <div className="overflow-x-auto md:overflow-clip">
+      <div className="relative flex justify-center items-center py-10 rounded-lg min-w-[640px] ">
+        <div className="relative w-[1000px] flex justify-between items-stretch px-10">
+          {
+            <div
+              className={`flex flex-col items-center w-24 md:w-32 lg:w-48 justify-evenly`}
+            >
+              {matches
+                .filter((m) => m.id.endsWith('f1') && !m.id.startsWith('f'))
+                .map((match) => (
+                  <Box
+                    key={match.id + 'f'}
+                    id={match.id + 'f'}
+                    player1={match.player1}
+                    player2={match.player2}
+                    color1={colourMatch[match.id]}
+                    color2={colourMatch[match.id]}
+                    color3={color2}
+                  />
+                ))}
+            </div>
+          }
+          {[prefix + 'q', prefix + 's', prefix + 'f'].map((round, i) => (
+            <div
+              key={i}
+              className={`flex flex-col items-center w-24 md:w-32 lg:w-48 justify-evenly`}
+            >
+              {matches
+                .filter((m) => m.id.startsWith(round))
+                .map((match) => (
+                  <Box
+                    key={match.id}
+                    id={match.id}
+                    player1={match.player1}
+                    player2={match.player2}
+                    color1={'#ffffff'}
+                    color2={'#ffffff'}
+                    color3={'#000000'}
+                  />
+                ))}
+            </div>
+          ))}
         </div>
         <svg
           ref={svgRef}
@@ -116,4 +145,4 @@ const TournamentBracket: React.FC<Props> = ({
   );
 };
 
-export default TournamentBracket;
+export default FinalsTournamentBracket;
