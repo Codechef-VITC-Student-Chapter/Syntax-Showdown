@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import clubLogo from '/Club Logo.png';
 import swords from '/Swords.png';
-import TournamentBracket from './graph/TournamentBracket';
+// import TournamentBracket from './graph/TournamentBracket';
 import FinalsTournamentBracket from './graph/FinalsTournamentBracket';
 import LoadingScreen from './LoadingScreen';
 
@@ -13,16 +13,16 @@ interface Match {
   next?: string;
 }
 
-function whatColour(colour: string): string {
-  const colourMap: { [key: string]: string } = {
-    '#D73646': 'r',
-    '#376189': 'b',
-    '#2E987A': 'g',
-    '#F4B331': 'y',
-  };
+// function whatColour(colour: string): string {
+//   const colourMap: { [key: string]: string } = {
+//     '#D73646': 'r',
+//     '#376189': 'b',
+//     '#2E987A': 'g',
+//     '#F4B331': 'y',
+//   };
 
-  return colourMap[colour] || colour;
-}
+//   return colourMap[colour] || colour;
+// }
 
 // const AllGames: Match[] = [
 //   {
@@ -312,11 +312,11 @@ function App() {
   useEffect(() => {
     fetchData(); // Fetch data when component mounts
   }, []);
-  const [selectedMatches, setMatches] = useState<Match[]>([]);
+  // const [selectedMatches, setMatches] = useState<Match[]>([]);
 
-  useEffect(() => {
-    setMatches(filterMatches(allGames, whatColour(selectedGroup)));
-  }, [selectedGroup]);
+  // useEffect(() => {
+  //   setMatches(filterMatches(allGames, whatColour(selectedGroup)));
+  // }, [selectedGroup]);
 
   const matchesf: Match[] = filterMatches(allGames, 'f');
   console.log(filterMatches(allGames, 'f'));
@@ -342,11 +342,7 @@ function App() {
           </h2>
         </div>
         <div className="m-2">
-          <FinalsTournamentBracket
-            color2="white"
-            matches={matchesf}
-            prefix="f"
-          />
+          <FinalsTournamentBracket matches={matchesf} prefix="f" />
         </div>
       </div>
     </>

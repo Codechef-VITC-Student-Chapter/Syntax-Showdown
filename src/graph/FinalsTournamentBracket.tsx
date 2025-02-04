@@ -11,13 +11,11 @@ interface Match {
 }
 
 interface Props {
-  color2: string;
   matches: Match[];
   prefix?: string;
 }
 
 const FinalsTournamentBracket: React.FC<Props> = ({
-  color2,
   matches,
   prefix = '',
 }: Props) => {
@@ -94,13 +92,6 @@ const FinalsTournamentBracket: React.FC<Props> = ({
     return () => window.removeEventListener('resize', updateLines);
   }, [matches]);
 
-  const colourMatch: { [key: string]: string } = {
-    rf1: '#D73646',
-    bf1: '#376189',
-    gf1: '#2E987A',
-    yf1: '#F4B331',
-    fq1: '',
-  };
   return (
     <div className="overflow-x-auto md:overflow-clip">
       <div className="relative flex justify-center items-center py-10 rounded-lg min-w-[640px] ">
