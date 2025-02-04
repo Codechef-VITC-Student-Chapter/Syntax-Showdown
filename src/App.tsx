@@ -11,6 +11,7 @@ interface Match {
   player2: string;
   nextId?: string;
   next?: string;
+  winner?: string;
 }
 
 // function whatColour(colour: string): string {

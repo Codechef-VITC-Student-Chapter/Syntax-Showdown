@@ -5,9 +5,10 @@ interface Props {
   color1: string;
   color2: string;
   color3: string;
+  winner?: string;
 }
 
-function Box({ id, player1, player2, color1, color2, color3 }: Props) {
+function Box({ id, player1, player2, color1, color2, color3, winner }: Props) {
   return (
     <div id={id} className="py-2 flex flex-row">
       <div
@@ -24,14 +25,29 @@ function Box({ id, player1, player2, color1, color2, color3 }: Props) {
           className="w-full flex-grow flex flex-col justify-center"
           style={{ backgroundColor: color1 }}
         >
-          {player1}
+          <span
+            style={{
+              textDecoration: winner === player1 ? 'line-through' : 'none',
+              textDecorationThickness: winner === player1 ? '3px' : 'auto', // Adjust thickness here
+            }}
+          >
+            {player1}
+          </span>
         </div>
+
         <hr className="border-1" style={{ borderColor: color3 }} />
         <div
           className="w-full flex-grow flex flex-col justify-center"
           style={{ backgroundColor: color2 }}
         >
-          {player2}
+          <span
+            style={{
+              textDecoration: winner === player2 ? 'line-through' : 'none',
+              textDecorationThickness: winner === player2 ? '3px' : 'auto', // Adjust thickness here
+            }}
+          >
+            {player2}
+          </span>
         </div>
       </div>
     </div>

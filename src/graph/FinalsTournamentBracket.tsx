@@ -7,6 +7,7 @@ interface Match {
   player2: string;
   nextId?: string;
   next?: string;
+  winner?: string;
 }
 
 interface Props {
@@ -106,6 +107,7 @@ const FinalsTournamentBracket: React.FC<Props> = ({
                   <Box
                     key={match.id}
                     id={match.id}
+                    winner={match.winner}
                     player1={match.player1}
                     player2={match.player2}
                     color1={
