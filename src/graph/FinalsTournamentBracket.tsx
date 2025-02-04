@@ -100,45 +100,7 @@ const FinalsTournamentBracket: React.FC<Props> = ({
     <div className="overflow-x-auto md:overflow-clip">
       <div className="relative flex justify-center items-center py-10 rounded-lg min-w-[640px] ">
         <div className="relative w-[1000px] flex justify-between items-stretch px-10">
-          {
-            <div
-              className={`flex flex-col items-center w-24 md:w-32 lg:w-48 justify-end`}
-            >
-              {matches
-                .filter((m) => m.id == 'fm1' || m.id == 'fq1' || m.id == 'fq2')
-                .map((match) => (
-                  <Box
-                    key={match.id}
-                    id={match.id}
-                    player1={match.player1}
-                    player2={match.player2}
-                    color1={'#ffffff'}
-                    color2={'#ffffff'}
-                    color3={'#000000'}
-                  />
-                ))}
-            </div>
-          }
-          {
-            <div
-              className={`flex flex-col items-center w-24 md:w-32 lg:w-48 justify-end`}
-            >
-              {matches
-                .filter((m) => m.id == 'fq3')
-                .map((match) => (
-                  <Box
-                    key={match.id}
-                    id={match.id}
-                    player1={match.player1}
-                    player2={match.player2}
-                    color1={'#ffffff'}
-                    color2={'#ffffff'}
-                    color3={'#000000'}
-                  />
-                ))}
-            </div>
-          }
-          {[prefix + 's', prefix + 'f'].map((round, i) => (
+          {[prefix + 'q', prefix + 's', prefix + 'f'].map((round, i) => (
             <div
               key={i}
               className={`flex flex-col items-center w-24 md:w-32 lg:w-48 justify-evenly`}
@@ -151,9 +113,25 @@ const FinalsTournamentBracket: React.FC<Props> = ({
                     id={match.id}
                     player1={match.player1}
                     player2={match.player2}
-                    color1={'#ffffff'}
-                    color2={'#ffffff'}
-                    color3={'#000000'}
+                    color1={
+                      match.id.startsWith('fq')
+                        ? '#C15217'
+                        : match.id.startsWith('fs')
+                        ? '#6F6F6F'
+                        : match.id.startsWith('ff')
+                        ? '#E99D11'
+                        : '#ffffff'
+                    }
+                    color2={
+                      match.id.startsWith('fq')
+                        ? '#C15217'
+                        : match.id.startsWith('fs')
+                        ? '#6F6F6F'
+                        : match.id.startsWith('ff')
+                        ? '#E99D11'
+                        : '#ffffff'
+                    }
+                    color3={match.id.startsWith('ff') ? '#000000' : '#ffffff'}
                   />
                 ))}
             </div>
