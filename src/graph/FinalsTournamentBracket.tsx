@@ -6,6 +6,7 @@ interface Match {
   player1: string;
   player2: string;
   nextId?: string;
+  next?: string;
 }
 
 interface Props {
@@ -62,13 +63,18 @@ const FinalsTournamentBracket: React.FC<Props> = ({
       svgRef.current.innerHTML = '';
 
       matches.forEach((match) => {
-        if (match.nextId) {
-          var fromElement;
-          if (match.id.endsWith('f1') && match.id != 'f1') {
-            fromElement = document.getElementById(match.id + 'f');
-          } else {
-            fromElement = document.getElementById(match.id);
+        console.log(match);
+        if (match.next) {
+          console.log('happening 2');
+          const fromElement = document.getElementById(match.id);
+          const toElement = document.getElementById(match.next);
+          if (fromElement && toElement) {
+            drawSteppedLine(fromElement, toElement);
           }
+        }
+        if (match.nextId) {
+          console.log('happening');
+          const fromElement = document.getElementById(match.id);
           const toElement = document.getElementById(match.nextId);
           if (fromElement && toElement) {
             drawSteppedLine(fromElement, toElement);
@@ -96,24 +102,43 @@ const FinalsTournamentBracket: React.FC<Props> = ({
         <div className="relative w-[1000px] flex justify-between items-stretch px-10">
           {
             <div
-              className={`flex flex-col items-center w-24 md:w-32 lg:w-48 justify-evenly`}
+              className={`flex flex-col items-center w-24 md:w-32 lg:w-48 justify-end`}
             >
               {matches
-                .filter((m) => m.id.endsWith('f1') && !m.id.startsWith('f'))
+                .filter((m) => m.id == 'fm1' || m.id == 'fq1' || m.id == 'fq2')
                 .map((match) => (
                   <Box
-                    key={match.id + 'f'}
-                    id={match.id + 'f'}
+                    key={match.id}
+                    id={match.id}
                     player1={match.player1}
                     player2={match.player2}
-                    color1={colourMatch[match.id]}
-                    color2={colourMatch[match.id]}
-                    color3={color2}
+                    color1={'#ffffff'}
+                    color2={'#ffffff'}
+                    color3={'#000000'}
                   />
                 ))}
             </div>
           }
-          {[prefix + 'q', prefix + 's', prefix + 'f'].map((round, i) => (
+          {
+            <div
+              className={`flex flex-col items-center w-24 md:w-32 lg:w-48 justify-end`}
+            >
+              {matches
+                .filter((m) => m.id == 'fq3')
+                .map((match) => (
+                  <Box
+                    key={match.id}
+                    id={match.id}
+                    player1={match.player1}
+                    player2={match.player2}
+                    color1={'#ffffff'}
+                    color2={'#ffffff'}
+                    color3={'#000000'}
+                  />
+                ))}
+            </div>
+          }
+          {[prefix + 's', prefix + 'f'].map((round, i) => (
             <div
               key={i}
               className={`flex flex-col items-center w-24 md:w-32 lg:w-48 justify-evenly`}

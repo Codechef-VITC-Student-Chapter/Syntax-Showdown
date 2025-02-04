@@ -10,6 +10,7 @@ interface Match {
   player1: string;
   player2: string;
   nextId?: string;
+  next?: string;
 }
 
 function whatColour(colour: string): string {
@@ -345,70 +346,6 @@ function App() {
             color2="white"
             matches={matchesf}
             prefix="f"
-          />
-        </div>
-        {/* Sub Heading */}
-        <div className="flex justify-center items-center m-5 p-5">
-          <h2 className="text-white sm:text-xl md:text-3xl font-extrabold m-5 p-3">
-            Group Showdown
-          </h2>
-        </div>
-
-        <div className="custombreaks flex w-screen justify-center">
-          {/* Buttons */}
-          <div
-            className="flex-col m-16 p-8 rounded-2xl border-4 border-white justify-center items-center inline-flex"
-            style={{
-              borderStyle: 'dashed',
-              borderWidth: '4px',
-              borderColor: 'white',
-              borderSpacing: '4px',
-            }}
-          >
-            <div
-              className="text-white sm:text-xl md:text-2xl font-medium"
-              style={{ color: selectedGroup }}
-            >
-              Choose Your Group
-            </div>
-            <div className="flexer max-w-full flex py-8">
-              {/* Buttons */}
-              {[
-                { name: 'Group 1', color: '#D73646' },
-                { name: 'Group 2', color: '#376189' },
-                { name: 'Group 3', color: '#2E987A' },
-                { name: 'Group 4', color: '#F4B331' },
-              ].map((group, index) => (
-                <button
-                  key={index}
-                  className="m-1 md:m-2 p-1 md:p-2 cursor-pointer"
-                  onClick={() => setGroup(group.color)}
-                >
-                  <div
-                    key={index}
-                    className="border-4 rounded-lg"
-                    style={{
-                      borderColor: group.color,
-                      backgroundColor: group.color,
-                    }}
-                  >
-                    <div className="px-2 py-1 flex justify-evenly text-sm md:text-2xl bg-white border-4 rounded-md border-[#373737]">
-                      <div>{group.name}</div>
-                      <div>►</div>
-                    </div>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Group Bracket */}
-          <TournamentBracket
-            key={selectedGroup}
-            color1={selectedGroup}
-            color2="white"
-            matches={selectedMatches}
-            prefix={whatColour(selectedGroup)}
           />
         </div>
       </div>
