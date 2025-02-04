@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Box from './Box';
+import Trophy from '/Trophy.png';
 
 interface Match {
   id: string;
@@ -63,9 +64,14 @@ const FinalsTournamentBracket: React.FC<Props> = ({
       svgRef.current.innerHTML = '';
 
       matches.forEach((match) => {
-        console.log(match);
+        if (match.id == 'ff1') {
+          const fromElement = document.getElementById(match.id);
+          const toElement = document.getElementById('gg');
+          if (fromElement && toElement) {
+            drawSteppedLine(fromElement, toElement);
+          }
+        }
         if (match.next) {
-          console.log('happening 2');
           const fromElement = document.getElementById(match.id);
           const toElement = document.getElementById(match.next);
           if (fromElement && toElement) {
@@ -73,7 +79,6 @@ const FinalsTournamentBracket: React.FC<Props> = ({
           }
         }
         if (match.nextId) {
-          console.log('happening');
           const fromElement = document.getElementById(match.id);
           const toElement = document.getElementById(match.nextId);
           if (fromElement && toElement) {
@@ -131,11 +136,14 @@ const FinalsTournamentBracket: React.FC<Props> = ({
                         ? '#E99D11'
                         : '#ffffff'
                     }
-                    color3={match.id.startsWith('ff') ? '#000000' : '#ffffff'}
+                    color3={match.id.startsWith('ff') ? '#fff' : '#ffffff'}
                   />
                 ))}
             </div>
           ))}
+          <div className="flex flex-col justify-center">
+            <img id="gg" src={Trophy} className="h-24"></img>
+          </div>
         </div>
         <svg
           ref={svgRef}
