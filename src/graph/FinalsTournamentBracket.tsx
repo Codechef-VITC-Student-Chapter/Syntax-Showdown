@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import Box from './Box';
-import Trophy from '/Trophy.png';
 
 interface Match {
   id: string;
