@@ -132,9 +132,6 @@ const FinalsTournamentBracket: React.FC<Props> = ({
                 ))}
             </div>
           ))}
-          <div id="gg" className="flex flex-col justify-center">
-            <img src={Trophy} className="h-24"></img>
-          </div>
         </div>
         <svg
           ref={svgRef}
